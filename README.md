@@ -9,7 +9,6 @@ $meta->charset('UTF-8');
 $meta->name('title', 'Hello World');
 $meta->httpEquiv('Expires', '5000');
 $meta->link('next', 'http://lorem.ipsum/?page=3');
-$meta->property('og:type', 'type');
 
 $meta->title('Title');
 $meta->description('My Description');
