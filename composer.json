@@ -1,5 +1,5 @@
 {
-    "name": "brendt/html-meta",
+    "name": "pageon/html-meta",
     "description": "Manage HTML meta tags in PHP",
     "type": "library",
     "license": "MIT",
