@@ -1,3 +1,5 @@
+[![Build Status](https://scrutinizer-ci.com/g/brendt/html-meta/badges/build.png?b=master)](https://scrutinizer-ci.com/g/brendt/html-meta/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/brendt/html-meta/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/brendt/html-meta/?branch=master)
+
 ### Basic usages
 
 ```php
