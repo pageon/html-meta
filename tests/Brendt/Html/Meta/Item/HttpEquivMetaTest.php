@@ -1,8 +1,7 @@
 <?php
 
-namespace Item;
+namespace Brendt\Html\Meta\Item;
 
-use Brendt\Html\Meta\Item\HttpEquivMeta;
 use PHPUnit\Framework\TestCase;
 
 class HttpEquivMetaTest extends TestCase
