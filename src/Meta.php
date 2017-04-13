@@ -53,7 +53,7 @@ class Meta
         $html = '';
 
         foreach ($this->meta as $metaItem) {
-            $html .= $metaItem->render() . "/n";
+            $html .= $metaItem->render() . "\n";
         }
 
         return $html;
