@@ -12,7 +12,7 @@ $meta->link('next', 'http://lorem.ipsum/?page=3');
 
 $meta->title('Title');
 $meta->description('My Description');
-$meta->image('/path/to//image.jpeg');
+$meta->image('/path/to/image.jpeg');
 ```
 
 ### Using it as an injectable service
@@ -33,5 +33,5 @@ $html = $meta->render();
 ```
 
 ```twig
-{{ $meta->render() }}
+{{ meta->render() }}
 ```

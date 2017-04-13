@@ -1,8 +1,7 @@
 <?php
 
-namespace Item;
+namespace Brendt\Html\Meta\Item;
 
-use Brendt\Html\Meta\Item\NameMeta;
 use PHPUnit\Framework\TestCase;
 
 class NameMetaTest extends TestCase

@@ -1,8 +1,7 @@
 <?php
 
-namespace Item;
+namespace Brendt\Html\Meta\Item;
 
-use Brendt\Html\Meta\Item\CharsetMeta;
 use PHPUnit\Framework\TestCase;
 
 class CharsetMetaTest extends TestCase

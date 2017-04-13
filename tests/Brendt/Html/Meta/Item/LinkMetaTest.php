@@ -1,8 +1,7 @@
 <?php
 
-namespace Item;
+namespace Brendt\Html\Meta\Item;
 
-use Brendt\Html\Meta\Item\LinkMeta;
 use PHPUnit\Framework\TestCase;
 
 class LinkMetaTest extends TestCase
