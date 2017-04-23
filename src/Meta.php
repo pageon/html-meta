@@ -167,7 +167,7 @@ class Meta
      *
      * @return Meta
      */
-    public function setTruncate(?int $truncate) : Meta {
+    public function setTruncate(int $truncate = null) : Meta {
         $this->truncate = $truncate;
 
         return $this;
