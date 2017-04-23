@@ -27,7 +27,7 @@ class DefaultConfigurator implements MetaConfigurator
      *
      * @return void
      */
-    public function configure(Meta $meta) : void {
+    public function configure(Meta $meta) {
         $meta->charset($this->config['charset'])
             ->setSocialPrefixes($this->config['socialPrefixes'])
             ->setTruncate($this->config['truncate'])

@@ -16,5 +16,5 @@ interface MetaConfigurator
      *
      * @return void
      */
-    public function configure(Meta $meta) : void;
+    public function configure(Meta $meta);
 }
