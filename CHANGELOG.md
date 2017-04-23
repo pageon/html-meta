@@ -1,5 +1,5 @@
 # Changelog
 
-## 0.3.0 
+## 1.0.0
 
-- Support PHP 7.0
+- First stable release.
