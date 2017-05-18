@@ -12,7 +12,7 @@ class DefaultConfigurator implements MetaConfigurator
     protected $config = [
         'charset'        => 'UTF-8',
         'truncate'       => null,
-        'socialPrefixes' => ['', 'og:', 'twitter:'],
+        'socialPrefixes' => ['og:', 'twitter:'],
     ];
 
     /**
