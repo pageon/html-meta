@@ -8,6 +8,7 @@ use Brendt\Html\Meta\Item\HttpEquivMeta;
 use Brendt\Html\Meta\Item\LinkMeta;
 use Brendt\Html\Meta\Item\NameMeta;
 use Brendt\Html\Meta\Config\MetaConfigurator;
+use Brendt\Html\Meta\Item\PropertyMeta;
 
 class Meta
 {
@@ -85,6 +86,19 @@ class Meta
     }
 
     /**
+     * @param string $property
+     * @param string $content
+     *
+     * @return Meta
+     */
+    public function property(string $property, string $content) : Meta {
+        $item = PropertyMeta::create($property, $content);
+        $this->meta[$property] = $item;
+
+        return $this;
+    }
+
+    /**
      * @param string $httpEquiv
      * @param string $content
      *
@@ -130,7 +144,13 @@ class Meta
      * @return Meta
      */
     public function title(string $content) : Meta {
-        return $this->social('title', $content);
+        $this->name('title', $content);
+
+        foreach ($this->socialPrefixes as $socialPrefix) {
+            $this->property("{$socialPrefix}title", $content);
+        }
+
+        return $this;
     }
 
     /**
@@ -139,7 +159,13 @@ class Meta
      * @return Meta
      */
     public function description(string $content) : Meta {
-        return $this->social('description', $content);
+        $this->name('description', $content);
+
+        foreach ($this->socialPrefixes as $socialPrefix) {
+            $this->property("{$socialPrefix}description", $content);
+        }
+
+        return $this;
     }
 
     /**
@@ -148,7 +174,13 @@ class Meta
      * @return Meta
      */
     public function image(string $content) : Meta {
-        return $this->social('image', $content);
+        $this->name('image', $content);
+
+        foreach ($this->socialPrefixes as $socialPrefix) {
+            $this->property("{$socialPrefix}image", $content);
+        }
+
+        return $this;
     }
 
     /**
