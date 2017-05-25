@@ -5,6 +5,7 @@ namespace Brendt\Html\Meta;
 use Brendt\Html\Meta\Config\DefaultConfigurator;
 use Brendt\Html\Meta\Item\CharsetMeta;
 use Brendt\Html\Meta\Item\HttpEquivMeta;
+use Brendt\Html\Meta\Item\ItemPropMeta;
 use Brendt\Html\Meta\Item\LinkMeta;
 use Brendt\Html\Meta\Item\NameMeta;
 use Brendt\Html\Meta\Config\MetaConfigurator;
@@ -18,9 +19,9 @@ class Meta
     private $meta = [];
 
     /**
-     * @var string[]
+     * @var SocialMeta[]
      */
-    private $socialPrefixes = [];
+    private $socialMeta = [];
 
     /**
      * @var int
@@ -53,8 +54,14 @@ class Meta
     public function render() : string {
         $html = '';
 
-        foreach ($this->meta as $metaItem) {
-            $html .= $metaItem->render() . "\n";
+        /**
+         * @var string     $type
+         * @var MetaItem[] $metaItems
+         */
+        foreach ($this->meta as $type => $metaItems) {
+            foreach ($metaItems as $metaItem) {
+                $html .= $metaItem->render() . "\n";
+            }
         }
 
         return $html;
@@ -67,7 +74,7 @@ class Meta
      */
     public function charset(string $charset) : Meta {
         $item = CharsetMeta::create($charset);
-        $this->meta['charset'] = $item;
+        $this->meta['charset'][] = $item;
 
         return $this;
     }
@@ -80,7 +87,20 @@ class Meta
      */
     public function name(string $name, string $content) : Meta {
         $item = NameMeta::create($name, $content);
-        $this->meta[$name] = $item;
+        $this->meta['name'][$name] = $item;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param string $content
+     *
+     * @return Meta
+     */
+    public function itemprop(string $name, string $content) : Meta {
+        $item = ItemPropMeta::create($name, $content);
+        $this->meta['itemprop'][$name] = $item;
 
         return $this;
     }
@@ -93,7 +113,7 @@ class Meta
      */
     public function property(string $property, string $content) : Meta {
         $item = PropertyMeta::create($property, $content);
-        $this->meta[$property] = $item;
+        $this->meta['property'][$property] = $item;
 
         return $this;
     }
@@ -106,7 +126,7 @@ class Meta
      */
     public function httpEquiv(string $httpEquiv, string $content) : Meta {
         $item = HttpEquivMeta::create($httpEquiv, $content);
-        $this->meta[$httpEquiv] = $item;
+        $this->meta['httpEquiv'][$httpEquiv] = $item;
 
         return $this;
     }
@@ -119,21 +139,7 @@ class Meta
      */
     public function link(string $rel, string $href) : Meta {
         $item = LinkMeta::create($rel, $href);
-        $this->meta[$rel] = $item;
-
-        return $this;
-    }
-
-    /**
-     * @param string $name
-     * @param string $content
-     *
-     * @return Meta
-     */
-    public function social(string $name, string $content) : Meta {
-        foreach ($this->socialPrefixes as $socialPrefix) {
-            $this->name("{$socialPrefix}{$name}", $content);
-        }
+        $this->meta['link'][$rel] = $item;
 
         return $this;
     }
@@ -146,8 +152,8 @@ class Meta
     public function title(string $content) : Meta {
         $this->name('title', $content);
 
-        foreach ($this->socialPrefixes as $socialPrefix) {
-            $this->property("{$socialPrefix}title", $content);
+        foreach ($this->socialMeta as $socialMeta) {
+            $socialMeta->title($content);
         }
 
         return $this;
@@ -161,8 +167,8 @@ class Meta
     public function description(string $content) : Meta {
         $this->name('description', $content);
 
-        foreach ($this->socialPrefixes as $socialPrefix) {
-            $this->property("{$socialPrefix}description", $content);
+        foreach ($this->socialMeta as $socialMeta) {
+            $socialMeta->description($content);
         }
 
         return $this;
@@ -176,20 +182,9 @@ class Meta
     public function image(string $content) : Meta {
         $this->name('image', $content);
 
-        foreach ($this->socialPrefixes as $socialPrefix) {
-            $this->property("{$socialPrefix}image", $content);
+        foreach ($this->socialMeta as $socialMeta) {
+            $socialMeta->image($content);
         }
-
-        return $this;
-    }
-
-    /**
-     * @param string[] $socialPrefixes
-     *
-     * @return Meta
-     */
-    public function setSocialPrefixes(array $socialPrefixes) : Meta {
-        $this->socialPrefixes = $socialPrefixes;
 
         return $this;
     }
@@ -201,6 +196,17 @@ class Meta
      */
     public function setTruncate(int $truncate = null) : Meta {
         $this->truncate = $truncate;
+
+        return $this;
+    }
+
+    /**
+     * @param SocialMeta[] $socialMeta
+     *
+     * @return Meta
+     */
+    public function setSocialMeta(array $socialMeta) : Meta {
+        $this->socialMeta = $socialMeta;
 
         return $this;
     }

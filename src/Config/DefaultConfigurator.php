@@ -3,6 +3,9 @@
 namespace Brendt\Html\Meta\Config;
 
 use Brendt\Html\Meta\Meta;
+use Brendt\Html\Meta\Social\GooglePlusMeta;
+use Brendt\Html\Meta\Social\OpenGraphMeta;
+use Brendt\Html\Meta\Social\TwitterMeta;
 
 class DefaultConfigurator implements MetaConfigurator
 {
@@ -10,9 +13,8 @@ class DefaultConfigurator implements MetaConfigurator
      * @var array
      */
     protected $config = [
-        'charset'        => 'UTF-8',
-        'truncate'       => null,
-        'socialPrefixes' => ['og:', 'twitter:'],
+        'charset'  => 'UTF-8',
+        'truncate' => null,
     ];
 
     /**
@@ -29,8 +31,11 @@ class DefaultConfigurator implements MetaConfigurator
      */
     public function configure(Meta $meta) {
         $meta->charset($this->config['charset'])
-            ->setSocialPrefixes($this->config['socialPrefixes'])
             ->setTruncate($this->config['truncate'])
-        ;
+            ->setSocialMeta([
+                new GooglePlusMeta($meta),
+                new TwitterMeta($meta),
+                new OpenGraphMeta($meta),
+            ]);;
     }
 }
