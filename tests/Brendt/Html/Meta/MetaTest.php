@@ -15,33 +15,33 @@ class MetaTest extends TestCase
         $this->assertNotNull($meta);
     }
 
-    public function test_social_prefixes_title() {
+    public function test_social_meta_title() {
         $meta = Meta::create();
         $meta->title('test');
         $html = $meta->render();
 
         $this->assertContains('<meta property="og:title', $html);
-        $this->assertContains('<meta property="twitter:title', $html);
+        $this->assertContains('<meta name="twitter:title', $html);
         $this->assertContains('<meta name="title', $html);
     }
 
-    public function test_social_prefixes_description() {
+    public function test_social_meta_description() {
         $meta = Meta::create();
         $meta->description('test');
         $html = $meta->render();
 
         $this->assertContains('<meta property="og:description', $html);
-        $this->assertContains('<meta property="twitter:description', $html);
+        $this->assertContains('<meta name="twitter:description', $html);
         $this->assertContains('<meta name="description', $html);
     }
 
-    public function test_social_prefixes_image() {
+    public function test_social_meta_image() {
         $meta = Meta::create();
         $meta->image('test');
         $html = $meta->render();
 
         $this->assertContains('<meta property="og:image', $html);
-        $this->assertContains('<meta property="twitter:image', $html);
+        $this->assertContains('<meta name="twitter:image', $html);
         $this->assertContains('<meta name="image', $html);
     }
 }

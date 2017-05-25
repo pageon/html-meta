@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.1
+## 1.1.0
 
-- Add better social tag support.
+- Improved social media meta tag support.
 
 ## 1.0.0
 
