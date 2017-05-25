@@ -25,7 +25,7 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Brendt\\Html\\Meta\\" : "src/"
+            "Pageon\\Html\\Meta\\" : "src/Pageon/Html/Meta"
         }
     }
 }
